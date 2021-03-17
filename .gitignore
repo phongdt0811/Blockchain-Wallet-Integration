@@ -1,0 +1,9 @@
+blockchain_data/
+client1/
+exports/
+public_params/
+win64/
+*.zip
+*backup
+test*
+komodo-node
