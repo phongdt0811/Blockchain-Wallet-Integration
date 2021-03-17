@@ -26,11 +26,6 @@ set paramsdir=%appdir%\public_params
 
 :: # MAIN_FLOW
 CALL :GET_ARGS %*
-::backup options 
-IF NOT "%backup%"=="" (
-	echo Seting up your new wallet with backup file from old wallet: "%backup%"
-)
-exit 0
 CALL :VERIFY_SOURCES
 CALL :STOP_NODE
 CALL :__MAIN
@@ -39,20 +34,13 @@ EXIT /B 0
 
 :GET_ARGS
 :: get argument privkey
-
 set args=%*
-
 	for /f "tokens=1,* delims==" %%a in ("%args%") do (
 		echo(%%a | findstr /r "privkey" && echo(%%b && (
 			set privkey=%%b
 		)
-		echo(%%a | findstr /r "backup" && echo(%%b && (
-			set backup=%%b
-		)
 	)
-
 	echo privkey: %privkey%
-
 EXIT /B 0
 
 :VERIFY_SOURCES
